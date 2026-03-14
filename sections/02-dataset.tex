@@ -43,43 +43,51 @@
 \end{frame}
 
 % --- 2.2 Linguistic typology ---
-\begin{frame}{Linguistic Typology: 20+ Clue Structures}
-  \begin{columns}[c]
-    \column{0.5\textwidth}
-      \small
-      Systematic syntactic analysis\\
-      via spaCy dependency parsing.\\[1em]
-      \textbf{20+ distinct structures} identified:
-      \vspace{0.5em}
-      \begin{itemize}
-        \setlength\itemsep{0.4em}
-        \item Nominal phrases (definitions)
-        \item Adjectival / prepositional phrases
-        \item Copular statements (``X is Y'')
-        \item Active / passive verb clauses
-        \item Imperative, infinitive, relative clauses
-      \end{itemize}
-    \column{0.5\textwidth}
-      \centering
-      \begin{tikzpicture}[
-        level 1/.style={sibling distance=4cm, level distance=1.8cm},
-        level 2/.style={sibling distance=2cm, level distance=1.5cm},
-        every node/.style={font=\scriptsize, align=center},
-        root/.style={draw=unisired, rounded corners, fill=unisired!10, font=\scriptsize\bfseries},
-        cat/.style={draw=unisired!60, rounded corners, fill=unisired!5}
-      ]
-      \node[root] {All Clues\\125,600}
-        child {node[cat] {Phrasal\\(non-clausal)}
-          child {node[cat] {Nominal}}
-          child {node[cat] {Adjectival}}
-        }
-        child {node[cat] {Clausal}
-          child {node[cat] {Copular}}
-          child {node[cat] {Verbal}}
-        };
-      \end{tikzpicture}
-      \vspace{0.5em}
-
-      {\scriptsize\color{graytext} Hierarchical taxonomy based\\on generative grammar principles}
-  \end{columns}
+\begin{frame}{Five Ways to Write a Clue}
+  \vspace{0.2em}
+  \begin{tikzpicture}
+    % Each row: bar + % label + Italian example + English gloss
+    % --- Row 1: Nominal 46% ---
+    \fill[unisired]      (0, 4.0) rectangle (4.00, 4.32);
+    \node[left,  font=\small\bfseries, text=darktext,  anchor=east] at (0, 4.16) {Nominal};
+    \node[right, font=\scriptsize,     text=white,     anchor=west] at (0.1, 4.16) {46\%};
+    \node[right, font=\small,          text=graytext,  anchor=west] at (4.2, 4.16)
+      {\textit{Infuso paglierino} $\rightarrow$ \textbf{tè}};
+    \node[right, font=\scriptsize\itshape, text=graytext, anchor=west] at (4.2, 3.72)
+      {(straw-coloured infusion $\rightarrow$ tea)};
+    % --- Row 2: Verbal 21% ---
+    \fill[unisired!75]   (0, 3.0) rectangle (1.83, 3.32);
+    \node[left,  font=\small\bfseries, text=darktext,  anchor=east] at (0, 3.16) {Verbal};
+    \node[right, font=\scriptsize,     text=white,     anchor=west] at (0.1, 3.16) {21\%};
+    \node[right, font=\small,          text=graytext,  anchor=west] at (4.2, 3.16)
+      {\textit{Risiede in uno spazio geografico} $\rightarrow$ \textbf{abitante}};
+    \node[right, font=\scriptsize\itshape, text=graytext, anchor=west] at (4.2, 2.78)
+      {(lives in a specific geographic area $\rightarrow$ inhabitant)};
+    % --- Row 3: Metalinguistic 12% ---
+    \fill[unisired!55]   (0, 2.0) rectangle (1.04, 2.32);
+    \node[left,  font=\small\bfseries, text=darktext,  anchor=east] at (0, 2.16) {Metalinguistic};
+    \node[right, font=\scriptsize,     text=darktext,  anchor=west] at (0.1, 2.16) {12\%};
+    \node[right, font=\small,          text=graytext,  anchor=west] at (4.2, 2.16)
+      {\textit{Il centro di Matera} $\rightarrow$ \textbf{TE}};
+    \node[right, font=\scriptsize\itshape, text=graytext, anchor=west] at (4.2, 1.82)
+      {(letter-game: center of ``Ma\underline{TE}ra'')};
+    % --- Row 4: Adjectival 9% ---
+    \fill[unisired!40]   (0, 1.0) rectangle (0.78, 1.32);
+    \node[left,  font=\small\bfseries, text=darktext,  anchor=east] at (0, 1.16) {Adjectival};
+    \node[right, font=\scriptsize,     text=darktext,  anchor=west] at (0.1, 1.16) {9\%};
+    \node[right, font=\small,          text=graytext,  anchor=west] at (4.2, 1.16)
+      {\textit{Probo, retto} $\rightarrow$ \textbf{onesto}};
+    \node[right, font=\scriptsize\itshape, text=graytext, anchor=west] at (4.2, 0.82)
+      {(upright, straight $\rightarrow$ honest)};
+    % --- Row 5: Copular 5% ---
+    \fill[unisired!25]   (0, 0.0) rectangle (0.44, 0.32);
+    \node[left,  font=\small\bfseries, text=darktext,  anchor=east] at (0, 0.16) {Copular};
+    \node[right, font=\scriptsize,     text=darktext,  anchor=west] at (0.1, 0.16) {5\%};
+    \node[right, font=\small,          text=graytext,  anchor=west] at (4.2, 0.16)
+      {\textit{Fu Cancelliere dal 1949 al 1963} $\rightarrow$ \textbf{Adenauer}};
+    \node[right, font=\scriptsize\itshape, text=graytext, anchor=west] at (4.2, -0.22)
+      {(was Chancellor from 1949 to 1963)};
+  \end{tikzpicture}
+  \vfill
+  {\small\color{graytext}\textit{Nominal phrases alone cover nearly half the dataset --- Italian crosswords favour concise lexical definitions over full sentences.}}
 \end{frame}
