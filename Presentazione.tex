@@ -26,7 +26,21 @@
 \setbeamercolor{item}{fg=unisired}
 \setbeamercolor{footline}{fg=graytext, bg=white}
 \setbeamercolor{normal text}{fg=darktext}
-\setbeamercolor{section in toc}{fg=unisired}
+\setbeamercolor{section in toc}{fg=darktext}
+\setbeamertemplate{section in toc}{%
+  \leavevmode\vspace{0.18em}%
+  \tikz[baseline=-0.5ex]{%
+    \node[fill=unisired, text=white, font=\scriptsize\bfseries,
+          inner sep=2.5pt, minimum size=0.45cm]{%
+      \inserttocsectionnumber%
+    };%
+  }\hspace{0.1em}%
+  {\small\inserttocsection}\par%
+}
+% Patch Beamer's internal TOC spacing (the \vskip1.5em between entries)
+\makeatletter
+\patchcmd{\beamer@sectionintoc}{\vskip1.5em}{\vskip0.4em}{}{}
+\makeatother
 
 % ---- Navigation off ----
 \setbeamertemplate{navigation symbols}{}
@@ -111,18 +125,56 @@
 \setbeamercolor{background canvas}{bg=unisired}
 \begin{frame}[plain]
   \vfill
-  \begin{columns}[c]
-    \column{0.13\textwidth}
-      \centering
-      \includegraphics[width=0.95\textwidth]{figures/sigillo.png}
-    \column{0.87\textwidth}
-      {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}\\[0.6em]
-      {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle}\\[1.8em]
-      {\usebeamercolor[fg]{author}\insertauthor}\\[0.3em]
-      {\usebeamercolor[fg]{date}\small\insertinstitute}\\[0.3em]
-      {\usebeamercolor[fg]{date}\small\insertdate}
-  \end{columns}
+
+  % --- Logo ---
+  \begin{center}\includegraphics[height=1.3cm]{figures/sigillo.png}\end{center}
+  \vspace{0.3em}
+
+  % --- Divider: rule + cross grid + rule ---
+  \begin{center}
+    \begin{tikzpicture}[baseline=0.1em,scale=0.7,transform shape]
+      % Left rule
+      \draw[white!40, line width=0.4pt] (-3.5, 0.15) -- (-0.9, 0.15);
+      % Cross-shaped grid: center=K, up=A, down=I, left=U, right=Y
+      \foreach \x/\y/\letter in {0/0/K, 0/0.3/A, 0/-0.3/I, -0.3/0/U, 0.3/0/Y} {
+        \draw[white!35, line width=0.3pt] (\x, \y) rectangle ++(0.25, 0.25);
+        \node[font=\tiny\bfseries, text=white!50] at (\x+0.125, \y+0.125) {\letter};
+      }
+      % Right rule
+      \draw[white!40, line width=0.4pt] (1, 0.15) -- (3.5, 0.15);
+    \end{tikzpicture}
+  \end{center}
+  \vspace{0.3em}
+
+  % --- Title ---
+  \begin{center}
+    {\fontsize{20}{26}\selectfont\color{white}\textbf{\inserttitle}}\\[0.4em]
+    {\color{white!80}\small\insertsubtitle}
+  \end{center}
+  \vspace{0.3em}
+
+  % --- Divider: rule + cross grid + rule ---
+  \begin{center}
+    \begin{tikzpicture}[baseline=0.1em,scale=0.7,transform shape]
+      \draw[white!40, line width=0.4pt] (-3.5, 0.15) -- (-0.9, 0.15);
+      \foreach \x/\y/\letter in {0/0/Y, 0/0.3/K, 0/-0.3/I, -0.3/0/U, 0.3/0/A} {
+        \draw[white!35, line width=0.3pt] (\x, \y) rectangle ++(0.25, 0.25);
+        \node[font=\tiny\bfseries, text=white!50] at (\x+0.125, \y+0.125) {\letter};
+      }
+      \draw[white!40, line width=0.4pt] (1, 0.15) -- (3.5, 0.15);
+    \end{tikzpicture}
+  \end{center}
+  \vspace{0.3em}
+
+  % --- Author ---
+  \begin{center}
+    {\color{white!90}\normalsize\textbf{\insertauthor}}\\[0.3em]
+    {\color{white!65}\small\insertinstitute}\\[0.3em]
+    {\color{white!50}\small\insertdate}
+  \end{center}
+
   \vfill
+
 \end{frame}
 }
 
