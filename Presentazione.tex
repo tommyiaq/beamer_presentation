@@ -48,18 +48,20 @@
 % ---- Footline ----
 \setbeamertemplate{footline}{%
   \leavevmode%
-  \hbox{%
-    \begin{beamercolorbox}[wd=.33\paperwidth,ht=2.25ex,dp=1ex,left]{footline}%
-      \hspace{1em}{\small T.\ Iaquinta}%
-    \end{beamercolorbox}%
-    \begin{beamercolorbox}[wd=.33\paperwidth,ht=2.25ex,dp=1ex,center]{footline}%
-      {\small PhD Defense — 2026}%
-    \end{beamercolorbox}%
-    \begin{beamercolorbox}[wd=.33\paperwidth,ht=2.25ex,dp=1ex,right]{footline}%
-      {\small\insertframenumber\,/\,\inserttotalframenumber}\hspace{1em}%
-    \end{beamercolorbox}%
+  \vbox{%
+    \color{unisired}\hrule height 0.4pt width \paperwidth%
+    \hbox{%
+      \begin{beamercolorbox}[wd=.30\paperwidth,ht=2.25ex,dp=1ex,left]{footline}%
+        \hspace{1em}{\scriptsize T.\ Iaquinta \textbf{·} Università di Siena}%
+      \end{beamercolorbox}%
+      \begin{beamercolorbox}[wd=.37\paperwidth,ht=2.25ex,dp=1ex,center]{footline}%
+        {\scriptsize\color{unisired}\textit{\insertsectionhead}}%
+      \end{beamercolorbox}%
+      \begin{beamercolorbox}[wd=.30\paperwidth,ht=2.25ex,dp=1ex,right]{footline}%
+        {\scriptsize\insertframenumber\,/\,\inserttotalframenumber}\hspace{1em}%
+      \end{beamercolorbox}%
+    }%
   }%
-  \vskip2pt%
 }
 
 % ---- Frame title with red rule ----
