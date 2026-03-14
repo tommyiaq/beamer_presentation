@@ -1,0 +1,26 @@
+# LaTeX auxiliary files
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.nav
+*.out
+*.snm
+*.synctex*
+*.toc
+*.vrb
+*.bbl
+*.blg
+*.dvi
+
+# Stale pdflatex temp files
+pdflatex*.fls
+
+# Generated PDF (rebuild from source)
+Presentazione.pdf
+
+# Beamer docs HTML (keep only markdown)
+beamer_docs/html/
+
+# Download script (utility, not presentation)
+download_beamer_docs.py
