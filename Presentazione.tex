@@ -91,7 +91,14 @@
     \begin{frame}[plain]
       \vfill
       \begin{center}
-        {\fontsize{28}{34}\selectfont\color{white}\textbf{\insertsectionhead}}
+        {\fontsize{28}{34}\selectfont\color{white}\textbf{\insertsection}}\\[0.6em]
+        {\color{white!40}\rule{4cm}{0.4pt}}\\[0.5em]
+        \begin{tikzpicture}[baseline=0.1em, scale=0.65, transform shape]
+          \foreach \x/\y/\letter in {0/0/U, 0/0.3/A, 0/-0.3/I, -0.3/0/Y, 0.3/0/K} {
+            \draw[white!25, line width=0.4pt] (\x, \y) rectangle ++(0.25, 0.25);
+            \node[font=\tiny\bfseries, text=white!35] at (\x+0.125, \y+0.125) {\letter};
+          }
+        \end{tikzpicture}
       \end{center}
       \vfill
     \end{frame}
