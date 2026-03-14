@@ -1,0 +1,67 @@
+% ======================================================
+%  2 — DATASET
+% ======================================================
+\section{The Dataset: 125,600 Italian Clue--Answer Pairs}
+
+% --- 2.1 Overview ---
+\begin{frame}{Building a Large-Scale Linguistic Resource}
+  \begin{columns}[c]
+    \column{0.42\textwidth}
+      \begin{center}
+        {\fontsize{44}{52}\selectfont\color{unisired}\textbf{125,600}}\\[0.3em]
+        {\large unique clue--answer pairs}\\[1.5em]
+        {\normalsize\color{graytext} Sources:}\\[0.3em]
+        {\small Dizy.com, Cruciverba.it,\\
+        La Settimana Enigmistica,\\
+        La Repubblica}
+      \end{center}
+    \column{0.58\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{figures/italian_db.pdf}
+  \end{columns}
+  \vfill
+  {\scriptsize\color{graytext} Publicly available:
+  \url{https://github.com/tommyiaq/cruciverba} --- CC BY-NC 4.0}
+\end{frame}
+
+% --- 2.2 Linguistic typology ---
+\begin{frame}{Linguistic Typology: 20+ Clue Structures}
+  \begin{columns}[c]
+    \column{0.5\textwidth}
+      \small
+      Systematic syntactic analysis\\
+      via spaCy dependency parsing.\\[1em]
+      \textbf{20+ distinct structures} identified:
+      \vspace{0.5em}
+      \begin{itemize}
+        \setlength\itemsep{0.4em}
+        \item Nominal phrases (definitions)
+        \item Adjectival / prepositional phrases
+        \item Copular statements (``X is Y'')
+        \item Active / passive verb clauses
+        \item Imperative, infinitive, relative clauses
+      \end{itemize}
+    \column{0.5\textwidth}
+      \centering
+      \begin{tikzpicture}[
+        level 1/.style={sibling distance=4cm, level distance=1.8cm},
+        level 2/.style={sibling distance=2cm, level distance=1.5cm},
+        every node/.style={font=\scriptsize, align=center},
+        root/.style={draw=unisired, rounded corners, fill=unisired!10, font=\scriptsize\bfseries},
+        cat/.style={draw=unisired!60, rounded corners, fill=unisired!5}
+      ]
+      \node[root] {All Clues\\125,600}
+        child {node[cat] {Phrasal\\(non-clausal)}
+          child {node[cat] {Nominal}}
+          child {node[cat] {Adjectival}}
+        }
+        child {node[cat] {Clausal}
+          child {node[cat] {Copular}}
+          child {node[cat] {Verbal}}
+        };
+      \end{tikzpicture}
+      \vspace{0.5em}
+
+      {\scriptsize\color{graytext} Hierarchical taxonomy based\\on generative grammar principles}
+  \end{columns}
+\end{frame}
