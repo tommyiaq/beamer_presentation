@@ -98,7 +98,7 @@
       \textbf{Clues}\\[0.3em]
       160 Italian clue--answer pairs\\[0.8em]
       \textbf{Human study}\\[0.3em]
-      72 Italian speakers · 40 clues each\\
+      72 Italian speakers · 40 clues each · 27,7 average age · variable experience\\
       $\mathbf{2{,}880}$ individual responses\\[0.8em]
       \textbf{LLMs evaluated}
       \begin{itemize}
@@ -126,7 +126,55 @@
   \end{columns}
 \end{frame}
 
-% --- 4.3 Results ---
+% --- 4.3 Mixed model ---
+\begin{frame}{Mixed Model: Surprisal Predicts Accuracy}
+  \begin{columns}[c]
+    \column{0.4\textwidth}
+      \begin{center}
+        {\fontsize{36}{44}\selectfont\color{unisired}\textbf{$-0.157$}}\\[0.2em]
+        {\small per surprisal bit}\\[0.4em]
+        {\scriptsize\color{graytext} LLaMA-3 · 2{,}880 responses · $p < 0.001$}\\[0.8em]
+        {\small Each extra bit of surprisal drops\\
+        the probability of solving by \textbf{$\sim$16\%}}\\[0.8em]
+        {\scriptsize\color{graytext} Consistent negative effect\\
+        across all three models tested}
+      \end{center}
+    \column{0.6\textwidth}
+      \begin{tikzpicture}
+        % Gradient axis background
+        \shade[left color=green!30, right color=unisired!40]
+          (0, 1.2) rectangle (6.5, 1.7);
+        % Axis line
+        \draw[->, thick, darktext] (0, 0.85) -- (6.8, 0.85)
+          node[right, font=\scriptsize, text=graytext] {surprisal};
+        % Tick marks
+        \foreach \x/\lbl in {0/2, 1.3/3, 2.6/4, 3.9/5, 5.2/6, 6.5/7} {
+          \draw (\x, 0.78) -- (\x, 0.92);
+          \node[font=\scriptsize, text=graytext, below=0.1cm] at (\x, 0.78) {\lbl};
+        }
+        % Easy example dot — armadi, surprisal ~3.9 → accuracy 100%
+        \fill[green!60!black] (2.47, 0.85) circle (4pt);
+        \node[font=\scriptsize, align=right, text=green!50!black, anchor=south east]
+          at (2.47, 1.4) {\textit{i mobili con le grucce}\\$\rightarrow$ \textbf{armadi}};
+        \node[font=\scriptsize\bfseries, text=green!50!black, anchor=north east]
+          at (2.47, 0.45) {100\% solved};
+        % Hard example dot — aranci, surprisal ~5.2 → accuracy 53%
+        \fill[unisired] (4.03, 0.85) circle (4pt);
+        \node[font=\scriptsize, align=left, text=unisired, anchor=south west]
+          at (4.03, 1.4) {\textit{piante che forniscono frutti}\\ \textit{per spremute}$\rightarrow$ \textbf{aranci}};
+        \node[font=\scriptsize\bfseries, text=unisired, anchor=north west]
+          at (4.03, 0.45) {53\% solved};
+        % 1-bit bracket
+        \draw[<->, >=Stealth, line width=0.8pt, darktext]
+          (2.47, 2.1) -- (3.77, 2.1)
+          node[midway, above, font=\scriptsize] {1 bit $\approx -16\%$};
+        \draw[dotted, graytext] (2.47, 0.85) -- (2.47, 2.1);
+        \draw[dotted, graytext] (3.77, 0.85) -- (3.77, 2.1);
+      \end{tikzpicture}
+  \end{columns}
+\end{frame}
+
+% --- 4.3b Correlation ---
 \begin{frame}{Surprisal Correlates with Human Performance}
   \begin{columns}[c]
     \column{0.5\textwidth}
