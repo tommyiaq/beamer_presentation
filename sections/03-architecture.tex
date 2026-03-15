@@ -108,7 +108,26 @@
         $LL$ & linked (shared) letters\\
         $FR$ & filled ratio (compactness)\\
         $LR$ & linked letter ratio\\
-      \end{tabular}}\\[0.8em]
-      \includegraphics[width=0.72\textwidth, height=0.38\textheight, keepaspectratio]{figures/crossword.pdf}
+      \end{tabular}}
+  \end{columns}
+\end{frame}
+
+% --- 3.4 Why sparse? ---
+\begin{frame}{The Result: A Sparse Educational Crossword}
+  \begin{columns}[c]
+    \column{0.5\textwidth}
+      \centering
+      \includegraphics[width=\textwidth, height=0.75\textheight, keepaspectratio]{figures/crossword.pdf}
+    \column{0.5\textwidth}
+      \small
+      Traditional crosswords fill every cell\\
+      to form a dense, interlocked grid.\\[0.8em]
+      \textbf{Ours are intentionally sparse:}
+      \vspace{0.5em}
+      \onslide<2->\begin{itemize}
+        \setlength\itemsep{0.5em}
+        \item Only topic-relevant words no filler to complete the grid
+      \end{itemize}
+      \vspace{0.5em}
   \end{columns}
 \end{frame}
