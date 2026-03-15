@@ -39,31 +39,40 @@
 \begin{frame}{Generating the Clues}
   \begin{columns}[c]
     \column{0.5\textwidth}
-      \small
-      \textbf{Step 1 — Keyword extraction} (zero-shot)\\[0.5em]
-      LLM identifies pedagogically relevant terms:\\
-      central to the topic, single word, suitable length.
-      \vspace{0.8em}
+      \fcolorbox{unisired}{unisired!5}{\parbox{\linewidth}{\vspace{0.3em}
+        \small\textbf{Step 1 — Keyword Extraction}\\[0.3em]
+        Zero-shot: LLM picks central terms .\\[0.5em]
+        \centering{\large\color{unisired}\textbf{$\sim$80\%}} {\small rated suitable by evaluation}
+        \vspace{0.3em}
+      }}
+      \vspace{0.6em}
 
-      \textbf{Step 2 — Clue generation} (few-shot)\\[0.5em]
-      Given text + keywords, LLM generates\\
-      a crossword-style definition for each answer.
-      \vspace{0.8em}
-
-      {\scriptsize\color{graytext}\textit{``Photosynthesis converts sunlight\ldots''} $\rightarrow$ \textbf{clorofilla}\\
-       Clue: \textit{``Pigmento che cattura la luce solare''}}
+      \fcolorbox{unisired}{unisired!5}{\parbox{\linewidth}{\vspace{0.3em}
+        \small\textbf{Step 2 — Clue Generation}\\[0.3em]
+        Few-shot: LLM writes a crossword-style\\
+        definition for each keyword.\\[0.5em]
+        \centering{\large\color{unisired}\textbf{$\sim$77\%}} {\small rated suitable by evaluation}
+        \vspace{0.3em}
+      }}
 
     \column{0.5\textwidth}
-      \begin{center}
-        \begin{tikzpicture}
-          \fill[unisired]    (0,2.2) rectangle (4.0, 2.6);
-          \node[font=\small\bfseries, text=white,    anchor=west] at (0.1, 2.4) {$\sim$80\% suitable keywords};
-          \fill[unisired!60] (0,1.1) rectangle (3.1, 1.5);
-          \node[font=\small\bfseries, text=white,    anchor=west] at (0.1, 1.3) {70--77\% acceptable clues};
-          \fill[unisired!30] (0,0.0) rectangle (4.0, 0.4);
-          \node[font=\small\bfseries, text=darktext, anchor=west] at (0.1, 0.2) {human revision → classroom-ready};
-        \end{tikzpicture}
-      \end{center}
+      \small
+      {\scriptsize\color{graytext}
+        \textit{``Photosynthesis converts sunlight\ldots''}\\[0.2em]
+        $\downarrow$ keyword: \textbf{clorofilla}\\[0.4em]
+        $\downarrow$ clue: \textit{``Pigment that captures sunlight.''}
+      }
+      \vspace{1em}
+
+      \onslide<2->{%
+        \fcolorbox{graytext}{lightbg}{\parbox{\linewidth}{\vspace{0.2em}
+          \scriptsize\color{graytext}
+          We also trained a classifier to auto-filter bad clues (80\% accuracy).\\[0.2em]
+          \textbf{It was dropped:} if human revision is always required anyway,
+          automatic filtering adds complexity without removing work.
+          \vspace{0.2em}
+        }}
+      }
   \end{columns}
 \end{frame}
 
