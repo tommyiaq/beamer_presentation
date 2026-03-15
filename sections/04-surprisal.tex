@@ -3,6 +3,37 @@
 % ======================================================
 \section{Surprisal-Based Difficulty Modeling}
 
+% --- 4.0 Why difficulty matters ---
+\begin{frame}{Difficulty Is Everything}
+  \begin{center}
+  \begin{tikzpicture}
+    % X axis label
+    \node[font=\small, text=graytext] at (5, -0.6) {Puzzle difficulty};
+    \draw[->, thick, graytext] (0.2, -0.3) -- (9.8, -0.3);
+
+    % Too easy zone
+    \fill[accentblue!10] (0, 0) rectangle (3.2, 3.5);
+    \node[font=\small\bfseries, text=accentblue, align=center] at (1.6, 3.0) {Too easy};
+    \node[font=\scriptsize, text=graytext, align=center] at (1.6, 2.2) {Boredom\\Disengagement\\No learning};
+
+    % Flow zone
+    \fill[green!12] (3.2, 0) rectangle (6.8, 3.5);
+    \node[font=\small\bfseries, text=green!50!black, align=center] at (5.0, 3.0) {Flow zone};
+    \node[font=\scriptsize, text=graytext, align=center] at (5.0, 2.2) {Engagement\\Challenge\\Learning};
+    \draw[green!50!black, line width=1.5pt, dashed] (3.2, 0) -- (3.2, 3.5);
+    \draw[green!50!black, line width=1.5pt, dashed] (6.8, 0) -- (6.8, 3.5);
+
+    % Too hard zone
+    \fill[unisired!10] (6.8, 0) rectangle (10, 3.5);
+    \node[font=\small\bfseries, text=unisired, align=center] at (8.4, 3.0) {Too hard};
+    \node[font=\scriptsize, text=graytext, align=center] at (8.4, 2.2) {Frustration\\Cognitive overload\\Abandonment};
+  \end{tikzpicture}
+  \end{center}
+  \vfill
+  {\small\centering\color{graytext}
+    We need a way to measure clue difficulty ---}
+\end{frame}
+
 % --- 4.1 What is surprisal ---
 \begin{frame}{What Is Surprisal?}
   \begin{columns}[c]
@@ -47,16 +78,52 @@
       arr/.style={->, >=Stealth, line width=1.5pt, unisired!50}
     ]
     \node[box, fill=unisired!8] (clue) at (0, 0) {Crossword\\Clue};
-    \node[box, fill=unisired!8] (llm) at (5.5, 0) {LLM computes\\Surprisal};
+    \node[box, fill=unisired!8] (llm) at (5.5, 0) {Compute\\Surprisal};
     \node[box, fill=unisired!8] (diff) at (11, 0) {Predicted\\Difficulty};
     \draw[arr] (clue) -- (llm);
     \draw[arr] (llm) -- (diff);
     \end{tikzpicture}
 
     \vspace{1.5em}
-    {\small\color{graytext} If yes $\Rightarrow$ we can \textbf{automatically calibrate} puzzle difficulty\\
+    \onslide<2->{\small\color{graytext} If yes $\Rightarrow$ we can \textbf{automatically calibrate} puzzle difficulty
     to match the learner's level --- no human annotation needed.}
   \end{center}
+\end{frame}
+
+% --- 4.2b Experiment ---
+\begin{frame}{The Experiment}
+  \begin{columns}[c]
+    \column{0.5\textwidth}
+      \small
+      \textbf{Clues}\\[0.3em]
+      160 Italian clue--answer pairs\\[0.8em]
+      \textbf{Human study}\\[0.3em]
+      72 Italian speakers · 40 clues each\\
+      $\mathbf{2{,}880}$ individual responses\\[0.8em]
+      \textbf{LLMs evaluated}
+      \begin{itemize}
+        \setlength\itemsep{0.2em}
+        \item Ita-GPT-2 \hfill{\scriptsize\color{graytext} 124M · Italian-specialised}
+        \item LLaMA-2   \hfill{\scriptsize\color{graytext} 7B · multilingual}
+        \item LLaMA-3   \hfill{\scriptsize\color{graytext} improved training}
+      \end{itemize}
+    \column{0.5\textwidth}
+      \centering
+      \begin{tikzpicture}[
+        box/.style={draw=unisired!50, rounded corners=6pt, minimum width=4.2cm,
+                    minimum height=0.9cm, align=center, font=\small, fill=unisired!5},
+        arr/.style={->, >=Stealth, line width=1pt, unisired!50}
+      ]
+      \node[box] (clue) at (0, 3.5)  {Clue--answer pair};
+      \node[box] (tmpl) at (0, 2.2)  {Measured accuracy};
+      \node[box] (llm)  at (0, 0.9)  {LLM surprisal score};
+      \node[box, fill=unisired!15, draw=unisired] (corr) at (0, -0.4)
+            {Correlate with\\human accuracy};
+      \draw[arr] (clue) -- (tmpl);
+      \draw[arr] (tmpl) -- (llm);
+      \draw[arr] (llm)  -- (corr);
+      \end{tikzpicture}
+  \end{columns}
 \end{frame}
 
 % --- 4.3 Results ---
