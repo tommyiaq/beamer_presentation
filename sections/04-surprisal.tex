@@ -155,13 +155,13 @@
         % Easy example dot — armadi, surprisal ~3.9 → accuracy 100%
         \fill[green!60!black] (2.47, 0.85) circle (4pt);
         \node[font=\scriptsize, align=right, text=green!50!black, anchor=south east]
-          at (2.47, 1.4) {\textit{i mobili con le grucce}\\$\rightarrow$ \textbf{armadi}};
+          at (2.47, 1.4) {\textit{i mobili con le grucce}$^{*}$\\$\rightarrow$ \textbf{armadi}};
         \node[font=\scriptsize\bfseries, text=green!50!black, anchor=north east]
           at (2.47, 0.45) {100\% solved};
         % Hard example dot — aranci, surprisal ~5.2 → accuracy 53%
         \fill[unisired] (4.03, 0.85) circle (4pt);
         \node[font=\scriptsize, align=left, text=unisired, anchor=south west]
-          at (4.03, 1.4) {\textit{piante che forniscono frutti}\\ \textit{per spremute}$\rightarrow$ \textbf{aranci}};
+          at (4.03, 1.4) {\textit{piante che forniscono frutti}$^{**}$\\\textit{per spremute}$\rightarrow$ \textbf{aranci}};
         \node[font=\scriptsize\bfseries, text=unisired, anchor=north west]
           at (4.03, 0.45) {53\% solved};
         % 1-bit bracket
@@ -171,6 +171,11 @@
         \draw[dotted, graytext] (2.47, 0.85) -- (2.47, 2.1);
         \draw[dotted, graytext] (3.77, 0.85) -- (3.77, 2.1);
       \end{tikzpicture}
+      \vspace{0.8em}
+      
+      {\scriptsize\color{graytext}
+        $^{*}$\textit{the furniture with hangers} $\rightarrow$ wardrobes \quad \\
+        $^{**}$\textit{plants that provide fruit for juicing} $\rightarrow$ oranges}
   \end{columns}
 \end{frame}
 
