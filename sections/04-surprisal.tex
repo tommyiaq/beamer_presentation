@@ -172,7 +172,7 @@
         \draw[dotted, graytext] (3.77, 0.85) -- (3.77, 2.1);
       \end{tikzpicture}
       \vspace{0.8em}
-      
+
       {\scriptsize\color{graytext}
         $^{*}$\textit{the furniture with hangers} $\rightarrow$ wardrobes \quad \\
         $^{**}$\textit{plants that provide fruit for juicing} $\rightarrow$ oranges}
@@ -180,19 +180,32 @@
 \end{frame}
 
 % --- 4.3b Correlation ---
-\begin{frame}{Surprisal Correlates with Human Performance}
+\begin{frame}{Not All Clue Types Are Equal}
   \begin{columns}[c]
     \column{0.5\textwidth}
       \centering
       \includegraphics[width=\textwidth]{figures/accuracy-surprisal-macroGPT2.png}
     \column{0.5\textwidth}
-      \begin{center}
-        {\fontsize{38}{46}\selectfont\color{unisired}\textbf{$r \approx -0.57$}}\\[0.5em]
-        {\large correlation with\\human accuracy}\\[1.5em]
-        {\small Higher surprisal\\$\Rightarrow$ lower human accuracy}\\[1em]
-        {\small\color{graytext} Effect is \textbf{stronger for nominal clues}\\
-        (definition-style --- the most common type)}
-      \end{center}
+      \begin{tikzpicture}
+        \node[font=\small\bfseries, text=darktext,  anchor=west] at (0, 3.2) {Nominal};
+        \node[font=\scriptsize,     text=graytext,  anchor=west] at (0, 2.85) {semantics-based · 46\% of data};
+        \node[font=\small\bfseries, text=green!50!black, anchor=west] at (3.8, 3.02) {strongest};
+
+        \draw[graytext!40] (0, 2.55) -- (6, 2.55);
+
+        \node[font=\small\bfseries, text=darktext,  anchor=west] at (0, 2.2) {Verbal};
+        \node[font=\scriptsize,     text=graytext,  anchor=west] at (0, 1.85) {sentence-based};
+        \node[font=\small\bfseries, text=graytext,  anchor=west] at (3.8, 2.02) {moderate};
+
+        \draw[graytext!40] (0, 1.55) -- (6, 1.55);
+
+        \node[font=\small\bfseries, text=darktext,  anchor=west] at (0, 1.2) {Metalinguistic};
+        \node[font=\scriptsize,     text=graytext,  anchor=west] at (0, 0.85) {wordplay};
+        \node[font=\small\bfseries, text=unisired,  anchor=west] at (3.8, 1.02) {weakest};
+      \end{tikzpicture}
+      \vspace{0.5em}
+
+      {\small\color{graytext}\textit{The more semantic the clue,\\the better surprisal predicts difficulty.}}
   \end{columns}
 \end{frame}
 
