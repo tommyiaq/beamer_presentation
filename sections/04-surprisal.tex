@@ -126,6 +126,51 @@
   \end{columns}
 \end{frame}
 
+% --- 4.2c Concatenation rules ---
+\begin{frame}{From Clue--Answer Pair to Surprisal}
+  \begin{columns}[c]
+    \column{0.30\textwidth}
+      \small
+      Surprisal requires the answer \textbf{in a sentence context}.\\[0.6em]
+      Six templates were tested ---\\
+      no single one fits all clue types.
+
+    \column{0.70\textwidth}
+      \begin{tikzpicture}[
+        rule/.style={draw=unisired!30, rounded corners=4pt,
+                     minimum width=7.8cm, align=left, font=\scriptsize,
+                     fill=unisired!4, inner sep=5pt},
+        best/.style={draw=unisired, rounded corners=4pt,
+                     minimum width=7.8cm, align=left, font=\scriptsize,
+                     fill=unisired!12, inner sep=5pt, line width=1.2pt},
+        lbl/.style={font=\scriptsize\bfseries, text=darktext, anchor=west},
+        tr/.style={font=\scriptsize\itshape, text=graytext, anchor=west}
+      ]
+      % Cioè rule
+      \node[lbl] at (0, 5.2) {Cioè rule};
+      \node[rule, anchor=north west] at (0, 5.0)
+        {\textit{Infuso paglierino, cioè \textbf{tè}}};
+      \node[tr] at (0.15, 4.25) {straw-coloured infusion, that is \textbf{tea}};
+
+      % Copular rule
+      \node[lbl] at (0, 3.85) {Copular rule};
+      \node[rule, anchor=north west] at (0, 3.65)
+        {\textit{Infuso paglierino è il \textbf{tè}}};
+      \node[tr] at (0.15, 2.9) {straw-coloured infusion is \textbf{tea}};
+
+      % Prompt rule
+      \node[lbl] at (0, 2.5) {Prompt rule
+        \raisebox{0.25ex}{\tikz\node[fill=unisired, text=white,
+          font=\tiny\bfseries, inner sep=1.5pt, rounded corners=2pt]{best};}};
+      \node[best, anchor=north west] at (0, 2.3) {%
+        \parbox{7.5cm}{\textit{Sei un cruciverbista esperto. La definizione è:\\%
+        Infuso paglierino. Inizia con \textbf{t}, ha 2 lettere: \textbf{tè}}}};
+      \node[tr] at (0.15, 0.9) {You are an expert crossword solver. The clue is: straw-coloured};
+      \node[tr] at (0.15, 0.55) {infusion. Starts with \textbf{t}, 3 letters: \textbf{tea}};
+      \end{tikzpicture}
+  \end{columns}
+\end{frame}
+
 % --- 4.3 Mixed model ---
 \begin{frame}{Mixed Model: Surprisal Predicts Accuracy}
   \begin{columns}[c]
