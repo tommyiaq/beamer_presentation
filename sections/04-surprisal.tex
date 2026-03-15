@@ -255,27 +255,58 @@
 \end{frame}
 
 % --- 4.4 Implications ---
-\begin{frame}{Adaptive Difficulty for Education}
-  \begin{center}
-    \vspace{0.5em}
-    \begin{tikzpicture}[
-      level/.style={draw=unisired!40, rounded corners=8pt, minimum width=10.5cm, minimum height=1.2cm, align=center, font=\small, line width=0.7pt},
-    ]
-    \node[level, fill=green!8] at (0, 2.5) {
-      {\color{green!50!black}\textbf{Easy}} --- Low surprisal clues $\rightarrow$ Beginners / Primary school
-    };
-    \node[level, fill=yellow!12] at (0, 0.8) {
-      {\color{yellow!40!black}\textbf{Medium}} --- Moderate surprisal $\rightarrow$ Secondary school
-    };
-    \node[level, fill=red!8] at (0, -0.9) {
-      {\color{unisired}\textbf{Hard}} --- High surprisal clues $\rightarrow$ Advanced / Expert
-    };
-    \draw[->, >=Stealth, line width=2pt, unisired!35] (6.3, 2.8) -- (6.3, -1.2);
-    \node[font=\small, text=graytext, rotate=-90] at (7, 0.8) {Increasing surprisal};
-    \end{tikzpicture}
+\begin{frame}{Putting It All Together}
+  \begin{columns}[c]
+    \column{0.42\textwidth}
+      \small
+      \textbf{Robust finding:}\\[0.3em]
+      Prompt rule + LLaMA-3 is consistent across all clue types.\\[0.8em]
+      \textbf{Exploratory signal:}\\[0.3em]
+      Specialized rules outperform within their category\\[0.6em]
+      \onslide<2->{%
+        \fcolorbox{unisired!50}{unisired!5}{\parbox{\linewidth}{\vspace{0.2em}\small\centering
+          Clue type is known at inference time ---\\
+          \textbf{switching rules per category adds zero overhead.}
+        \vspace{0.2em}}}%
+      }
 
-    \vspace{1.8em}
-    {\large Surprisal enables \textbf{automatic difficulty calibration}\\[0.2em]
-    without manual annotation.}
-  \end{center}
+    \column{0.58\textwidth}
+      \begin{tikzpicture}[
+        row/.style={font=\small, anchor=west},
+        tag/.style={rounded corners=3pt, font=\scriptsize\bfseries,
+                    inner sep=3pt, text=white},
+        sep/.style={graytext!35}
+      ]
+      % Header
+      \node[font=\scriptsize\bfseries, text=graytext, anchor=west] at (0,   4.1) {Clue type};
+      \node[font=\scriptsize\bfseries, text=graytext, anchor=west] at (3.5, 4.1) {Strongest signal};
+      \node[font=\scriptsize\itshape, text=graytext, anchor=west]  at (3.5, 3.85) {(exploratory)};
+      \draw[sep] (0, 3.65) -- (7, 3.65);
+
+      % Nominal
+      \node[row] at (0, 3.3) {Nominal};
+      \node[row, text=graytext, font=\scriptsize] at (0, 3.0) {46\% of data};
+      \node[tag, fill=accentblue!80, anchor=west] at (3.5, 3.15) {Topic-based};
+      \draw[sep] (0, 2.75) -- (7, 2.75);
+
+      % Verbal
+      \node[row] at (0, 2.42) {Verbal};
+      \node[tag, fill=accentblue!80, anchor=west] at (3.5, 2.42) {Topic-based};
+      \draw[sep] (0, 2.12) -- (7, 2.12);
+
+      % Adjectival
+      \node[row] at (0, 1.79) {Adjectival};
+      \node[tag, fill=green!50!black, anchor=west] at (3.5, 1.79) {Cioè rule};
+      \draw[sep] (0, 1.49) -- (7, 1.49);
+
+      % Metalinguistic
+      \node[row] at (0, 1.16) {Metalinguistic};
+      \node[tag, fill=unisired!60, anchor=west] at (3.5, 1.16) {no rule wins};
+      \draw[sep] (0, 0.86) -- (7, 0.86);
+
+      % Potential gain note
+      \node[font=\scriptsize\itshape, text=graytext, anchor=west] at (0, 0.5)
+        {Potential gain: up to $+0.15$ $r$-points vs.\ single rule};
+      \end{tikzpicture}
+  \end{columns}
 \end{frame}
